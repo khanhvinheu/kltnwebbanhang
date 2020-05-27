@@ -1,0 +1,57 @@
+<form [formGroup]="frm" (ngSubmit)="onSubmitForm()">
+    <!-- <div class="d-flex flex-row justify-content-between">
+        <label>Hình:</label>
+        <span [ngClass]="onValidatorTextColor('hinhAnh')" [innerHTML]="onValidator('hinhAnh',true)"></span>
+    </div>
+    <div class="d-flex flex-row input-group">
+        <input  type="text" class="form-control" name='hinhAnh' [value]='filename' readonly formControlName="hinhAnh">
+        <input  (change)="onFileChange($event)" type='file' [hidden]='true' class="form-control"
+            placeholder="Nhập tên nhà cung cấp " #file />
+        <div class="input-group-append">
+            <button type="button" (click)="file.click()" class="btn btn-primary">Choose...</button>
+        </div>
+    </div>
+    <br>     -->
+    <mat-form-field class="w-100">
+        <mat-label>Sản Phẩm</mat-label>
+        <mat-select formControlName="idSanPham">
+            <ng-container *ngIf="sanphams">
+                <mat-option [value]="null">null</mat-option>
+                <mat-option *ngFor="let sanpham of sanphams" [value]="sanpham.id">
+                    {{sanpham.tenSanpham}}
+                </mat-option>
+            </ng-container>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+        <mat-label>Khuyến mãi</mat-label>
+        <mat-select formControlName="idKhuyenMai">
+            <ng-container *ngIf="khuyenmais">
+                <mat-option [value]="1">null</mat-option>
+                <mat-option *ngFor="let khuyenmai of khuyenmais" [value]="khuyenmai.id">
+                    {{khuyenmai.tieuDe}}
+                </mat-option>
+            </ng-container>
+        </mat-select>        
+    </mat-form-field>        
+    <mat-form-field class="w-100">
+        <input matInput [matDatepicker]="picker" placeholder="Chọn ngày bắt đầu"  formControlName="NgayBD"  [min]="datenow" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field class="w-100">
+        <input matInput [matDatepicker]="picker2" placeholder="Chọn ngày bắt đầu" formControlName="NgayKT" [min]="datenow" >
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field> 
+    <div class="d-flex flex-row ">
+        <button type="submit" [disabled]="frm.invalid || is_loading" mat-flat-button color="warn" class="mr-2">
+            <div class="d-flex justify-content-center position-relative">
+                <div class="spinner-border text-muted position-absolute" *ngIf="is_loading"></div>
+                <span> Cập nhật</span>
+            </div>
+        </button>
+        <button type="button" (click)="onReset()" mat-stroked-button color="basic" >Làm mới</button>
+
+    </div>
+</form>

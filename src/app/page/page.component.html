@@ -1,0 +1,18 @@
+<app-header-page></app-header-page>
+<router-outlet></router-outlet>
+<mat-form-field>
+    <mat-label> Tỉnh (TP) </mat-label>
+    <mat-select [(ngModel)]="tinh" (selectionChange)="onChange($event.value)">
+      <mat-option>None</mat-option>
+      <mat-option  *ngFor="let data of data" [value]="data.name">{{data.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label> Tỉnh (TP) </mat-label>
+    <mat-select>
+      <mat-option>None</mat-option>
+      <mat-option *ngFor="let huyen of huyen" [value]="huyen">{{huyen}}</mat-option>
+    </mat-select>
+  </mat-form-field> 
+<app-footer-page></app-footer-page>
